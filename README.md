@@ -5,3 +5,11 @@
 📩 Communication → Automated emails & notifications.
 📑 Resources → Upload and share PDF notes.
 🔐 Role-based Access → Separate dashboards for Students, Teachers, and Admins.
+
+
+
+
+🎥 Demo Video  
+👉 [Watch on YouTube](https://youtu.be/TA4hguvR8pY)
+
+
