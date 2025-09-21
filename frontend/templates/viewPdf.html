@@ -16,31 +16,81 @@
       align-items: center;
     }
     header .logo {
-      font-size: 20px;
+      font-size: 30px;
       font-weight: bold;
     }
-    header a { color: #fff; text-decoration: none; font-size: 16px; }
-    header a:hover { text-decoration: underline; }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }
 
-    .table-container { padding: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
-    th { background-color: #202c45; color: white; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
+    .table-container {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: linear-gradient(to left, #ffe0b3, #ff5e14);
+      color: black;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
 
-    footer { background: #202c45; color: white; padding: 15px 0; margin-top: 20px; text-align: center; }
+    footer {
+      background: #202c45;
+      color: white;
+      padding: 15px 0;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .home-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: ghostwhite;
+      color: #ff5e14;
+      border: 0.5px solid midnightblue;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      transition: all 0.3s;
+    }
+
+    .home-btn:hover {
+      color: #0b2a62;
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgb(12, 0, 0);
+    }
   </style>
 </head>
 <body>
 <header>
-  <div class="logo"><i class="fas fa-file-pdf"></i> Student PDF Viewer</div>
+  <div class="logo"><i class="fas fa-graduation-cap me-2"></i>EduChamp</div>
   <div>
-    <a href="studentDash.html"><i class="fas fa-arrow-left"></i> Back</a>
+    <img src="../assets/images/profile/img_1.png" alt="Student" width="70px" height="70px">
   </div>
 </header>
 
 <div class="table-container">
-  <h3 class="text-center">Available Exam Papers</h3>
+  <h3 class="text-center">Available Notes</h3>
   <table>
     <thead>
     <tr>
@@ -55,6 +105,11 @@
     </tbody>
   </table>
 </div>
+
+
+<a href="../static/studentDash.html" class="home-btn">
+  <i class="fas fa-home fa-2x"></i>
+</a>
 
 <footer>
   <div class="container">

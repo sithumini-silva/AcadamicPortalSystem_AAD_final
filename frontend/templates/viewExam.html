@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt me-1"></i> LogIn</a>
+                    <a class="nav-link" href="../index.html"><i class="fas fa-sign-out-alt me-1"></i> LogOut</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../static/studentDash.html"><i class="fas fa-home me-1"></i> Home</a>
@@ -52,15 +52,12 @@
 
         <div class="content-area">
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span id="examshedule"><i class="fas fa-list me-2"></i>Exam Schedule</span>
-                    <button class="btn btn-sm btn-light" onclick="viewExams()">
-                        <i class="fas fa-refresh me-1"></i>Refresh
-                    </button>
-                </div>
                 <div class="card-body p-0">
                     <div class="table-container">
                         <table class="table table-hover">
+                            <button class="btn btn-sm btn-light" onclick="viewExams()">
+                                <i class="fas fa-refresh me-1"></i>Refresh
+                            </button>
                             <thead>
                             <tr>
                                 <th>Exam ID</th>

@@ -1,7 +1,7 @@
 :root {
     --primary: #ff5e14;           /* Primary Color */
     --primary-dark: #EFBC9B;      /* Slightly darker primary */
-    --secondary: #202c45;         /* Secondary Color */
+    --secondary: #00043c;         /* Secondary Color */
     --accent: #ff5e14;
     --light: #f5f5f5;             /* Light Gray */
     --dark: #202c45;              /* Dark / Secondary */
@@ -33,10 +33,11 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    background-color: #202c45; /* solid dark blue color */
     box-shadow: var(--shadow);
     padding: 0.8rem 1rem;
 }
+
 
 .navbar-brand {
     font-weight: 700;

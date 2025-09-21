@@ -19,15 +19,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.html"><i class="fas fa-sign-out-alt me-1"></i> LogOut</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../static/studentDash.html"><i class="fas fa-home me-1"></i> Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="fas fa-clipboard-list me-1"></i> Exam Results</a>
-                </li>
+                <img src="../assets/images/profile/img_2.png" alt="Student" width="80px" height="80px">
             </ul>
         </div>
     </div>
@@ -50,16 +42,20 @@
                     </div>
                     <div class="dropdown-content">
                         <a href="viewExam.html" class="dropdown-item">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-clipboard-list"></i>
                             Exams
                         </a>
                         <a href="paper2.html" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i>
+                            <i class="fas fa-book"></i>
                             Paper
                         </a>
-                        <a href="paper.html" class="dropdown-item">
+                        <a href="../static/studentDash.html" class="dropdown-item">
+                            <i class="fas fa-home-alt"></i>
+                            Home
+                        </a>
+                        <a href="../index.html" class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i>
-                            Ready Paper
+                            Log Out
                         </a>
                     </div>
                 </div>
@@ -102,15 +98,13 @@
             </div>
 
             <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span><i class="fas fa-list me-2"></i>Results Overview</span>
-                    <button class="btn btn-sm btn-light" onclick="loadResults()">
-                        <i class="fas fa-refresh me-1"></i>Refresh
-                    </button>
-                </div>
+
                 <div class="card-body p-0">
                     <div class="table-container">
                         <table class="table table-hover">
+                            <button class="btn btn-sm btn-light" onclick="loadResults()">
+                                <i class="fas fa-refresh me-1"></i>Refresh
+                            </button>
                             <thead>
                             <tr>
                                 <th>ID</th>
