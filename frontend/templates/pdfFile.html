@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Uploader | Modern Design</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/all/pdfFile.css">
+
+</head>
+<body>
+<header>
+    <div class="container">
+        <!-- Left side: Logo -->
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            PDF Uploader
+        </div>
+
+        <!-- Right side: Navigation links -->
+        <div class="nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="exam.html"><i class="fas fa-graduation-cap"></i> Exam</a>
+            <a href="email.html"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="form-card">
+        <h2><i class="fas fa-cloud-upload-alt"></i> Upload Papers</h2>
+        <div class="tabs">
+            <div class="tab active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                    <path d="M4.603 12.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.701 19.701 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.187-.012.395-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.065.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.716 5.716 0 0 1-.911-.95 11.642 11.642 0 0 0-1.997.406 11.311 11.311 0 0 1-1.021 1.51c-.29.35-.608.655-.926.787a.793.793 0 0 1-.58.029z"/>
+                </svg>
+                Education Support
+            </div>
+            <div class="tab">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+                User Support
+            </div>
+            <div class="tab">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                </svg>
+                Additional Options
+            </div>
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="hidden" id="pdfId" name="pdfId" />
+
+            <div class="form-group">
+                <label for="userDropdown"><i class="fas fa-user"></i> Select User:</label>
+                <select id="userDropdown" name="userId" required>
+                    <option value="">--Select User--</option>
+                    <option value="1">John Doe (Admin)</option>
+                    <option value="2">Jane Smith (Professor)</option>
+                    <option value="3">Robert Johnson (Student)</option>
+                    <option value="4">Sarah Williams (Researcher)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pdfFile"><i class="fas fa-file-pdf"></i> Upload PDF File:</label>
+                <div class="file-input-container">
+                    <input type="file" name="file" id="pdfFile" accept="application/pdf" required />
+                </div>
+            </div>
+
+            <button type="submit"><i class="fas fa-upload"></i> Upload PDF</button>
+        </form>
+
+        <p id="message"></p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>File Name</th>
+                    <th>User Id</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="pdfTable">
+                <!-- Sample rows for demonstration -->
+                <tr>
+                    <td>1001</td>
+                    <td>Mathematics_Final_2023.pdf</td>
+                    <td>2</td>
+                    <td>
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1002</td>
+                    <td>Physics_Midterm_Answers.pdf</td>
+                    <td>1</td>
+                    <td>
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1003</td>
+                    <td>Chemistry_Lab_Report.pdf</td>
+                    <td>3</td>
+                    <td>
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1004</td>
+                    <td>Literature_Review.pdf</td>
+                    <td>4</td>
+                    <td>
+                        <a href="viewPdf.html?id=${pdf.id}" target="_blank">View</a>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2023 PDF Uploader | Made with <i class="fas fa-heart" style="color: #ff5e14;"></i> for education</p>
+    </div>
+</footer>
+
+<script src="../js/pdfFileManage.js"></script>
+</body>
+</html>

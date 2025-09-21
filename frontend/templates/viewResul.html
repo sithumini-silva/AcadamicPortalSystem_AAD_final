@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - EduChamp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all/viewResult.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-graduation-cap"></i>EduChamp
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html"><i class="fas fa-sign-out-alt me-1"></i> LogOut</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../static/studentDash.html"><i class="fas fa-home me-1"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#"><i class="fas fa-clipboard-list me-1"></i> Exam Results</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-container">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="tab-menu">
+                <div class="tab active">Student panel</div>
+                <div class="tab">Load Result</div>
+            </div>
+
+            <div class="user-menu">
+                <div class="dropdown">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="viewExam.html" class="dropdown-item">
+                            <i class="fas fa-home"></i>
+                            Exams
+                        </a>
+                        <a href="paper2.html" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Paper
+                        </a>
+                        <a href="paper.html" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Ready Paper
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1 class="page-title"><i class="fas fa-medal me-2"></i>Exam Results</h1>
+
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Results</h3>
+                        <div class="stat-number" id="totalResults">0</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Average Score</h3>
+                        <div class="stat-number" id="averageScore">0%</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Highest Grade</h3>
+                        <div class="stat-number" id="highestGrade">-</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-list me-2"></i>Results Overview</span>
+                    <button class="btn btn-sm btn-light" onclick="loadResults()">
+                        <i class="fas fa-refresh me-1"></i>Refresh
+                    </button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-container">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Grade</th>
+                                <th>Total Marks</th>
+                                <th>Exam ID</th>
+                                <th>User ID</th>
+                            </tr>
+                            </thead>
+                            <tbody id="resultTableBody">
+                            <tr>
+                                <td colspan="5" class="text-center p-4 text-muted">
+                                    Loading results data...
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Function to determine grade class
+    function getGradeClass(grade) {
+        if (!grade) return '';
+
+        if (grade.includes('A') || grade.includes('a')) return 'grade-A';
+        if (grade.includes('B') || grade.includes('b')) return 'grade-B';
+        if (grade.includes('C') || grade.includes('c')) return 'grade-C';
+        if (grade.includes('D') || grade.includes('d')) return 'grade-D';
+        if (grade.includes('F') || grade.includes('f')) return 'grade-F';
+        return '';
+    }
+
+    // Function to load results
+    function loadResults() {
+        console.log("Fetching results...");
+        $.ajax({
+            url: "http://localhost:8080/api/v1/results/get",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log("Data received: ", data);
+                let tableBody = $("#resultTableBody");
+                tableBody.empty();
+
+                if (data && data.length > 0) {
+                    let totalMarks = 0;
+                    let highestGrade = '';
+                    let highestScore = 0;
+
+                    $.each(data, function (index, result) {
+                        const gradeClass = getGradeClass(result.msg);
+                        const marks = parseFloat(result.totalMark) || 0;
+                        totalMarks += marks;
+
+                        // Check for highest grade
+                        if (marks > highestScore) {
+                            highestScore = marks;
+                            highestGrade = result.msg || '';
+                        }
+
+                        let row = `<tr>
+                            <td>${result.id || "N/A"}</td>
+                            <td><span class="grade-badge ${gradeClass}">${result.msg || "N/A"}</span></td>
+                            <td>${result.totalMark || "0"}</td>
+                            <td>${result.exam?.id || result.examId || "N/A"}</td>
+                            <td>${result.student?.u_id || result.studentId || "N/A"}</td>
+                        </tr>`;
+                        tableBody.append(row);
+                    });
+
+                    // Update stats
+                    $("#totalResults").text(data.length);
+                    $("#averageScore").text(Math.round(totalMarks / data.length) + "%");
+                    $("#highestGrade").text(highestGrade || '-');
+                } else {
+                    tableBody.append("<tr><td colspan='5' class='text-center p-4 text-muted'>No results found.</td></tr>");
+                    $("#totalResults").text("0");
+                    $("#averageScore").text("0%");
+                    $("#highestGrade").text("-");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching results:", error);
+                $("#resultTableBody").html("<tr><td colspan='5' class='text-center p-4 text-muted'>Error loading results. Please try again.</td></tr>");
+
+                // Check if it's an authentication error
+                if (xhr.status === 401) {
+                    alert("You are not authenticated. Redirecting to login...");
+                    window.location.href = "login.html";
+                }
+            }
+        });
+    }
+
+    // Initialize when page loads
+    $(document).ready(function () {
+        loadResults();
+    });
+</script>
+</body>
+</html>

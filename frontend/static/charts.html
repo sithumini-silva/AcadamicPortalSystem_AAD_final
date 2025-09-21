@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Academic Portal Dashboard</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg:#f5f7fb;
+            --surface:#fff;
+            --text:#1e293b;
+            --muted:#6b7280;
+            --chip:#e9edf7;
+            --radius:12px;
+            --kpi-purple:#6b5cff;
+            --kpi-navy:#3b82f6;
+            --kpi-green:#16a34a;
+            --kpi-pink:#ec4899;
+            --kpi-orange:#f97316;
+            --kpi-cyan:#06b6d4;
+            --kpi-violet:#8b5cf6;
+        }
+
+        body {
+            margin:0;
+            font-family:"Inter", sans-serif;
+            background:var(--bg);
+            color:var(--text);
+        }
+
+        .appbar {
+            background:#0f172a;
+            color:#fff;
+            padding:12px 16px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .app-title { font-weight:700; font-size:1.1rem; }
+
+        .wrap {
+            display:grid;
+            grid-template-columns:1fr;
+            gap:12px;
+            padding:12px;
+            max-width:1200px;
+            margin:0 auto;
+        }
+
+        /* KPIs */
+        .kpis {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:10px;
+        }
+        .kpi {
+            border-radius:var(--radius);
+            padding:12px;
+            color:#fff;
+            box-shadow:0 2px 6px rgba(0,0,0,.08);
+        }
+        .kpi .label { font-size:.85rem; font-weight:600; }
+        .kpi .value { font-size:1.4rem; font-weight:800; margin:4px 0; }
+        .kpi .meta { font-size:.75rem; opacity:.9; }
+
+        .kpi[data-c="purple"] { background:linear-gradient(135deg,#6b5cff,#4f46e5);}
+        .kpi[data-c="navy"] { background:linear-gradient(135deg,#3b82f6,#2563eb);}
+        .kpi[data-c="green"] { background:linear-gradient(135deg,#16a34a,#15803d);}
+        .kpi[data-c="pink"] { background:linear-gradient(135deg,#ec4899,#db2777);}
+        .kpi[data-c="orange"] { background:linear-gradient(135deg,#f97316,#ea580c);}
+        .kpi[data-c="cyan"] { background:linear-gradient(135deg,#06b6d4,#0891b2);}
+        .kpi[data-c="violet"] { background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
+
+        /* Cards */
+        .grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:10px;
+        }
+        .card {
+            background:var(--surface);
+            border-radius:var(--radius);
+            padding:12px;
+            box-shadow:0 2px 6px rgba(0,0,0,.06);
+            display:flex;
+            flex-direction:column;
+        }
+        .card h3 { margin:0 0 8px; font-size:1rem; }
+        .sub { color:var(--muted); font-size:.8rem; }
+
+        /* Table */
+        .table { width:100%; border-collapse:collapse; font-size:.85rem; }
+        .table thead { background:#f1f5f9; }
+        .table th, .table td { padding:6px 8px; text-align:left; }
+        .chip { background:var(--chip); padding:2px 6px; border-radius:6px; font-size:.75rem; }
+
+        footer {
+            padding:8px; text-align:center; font-size:.8rem; color:var(--muted);
+        }
+    </style>
+</head>
+<body>
+<header class="appbar">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <div class="app-title">Academic Portal Dashboard</div>
+</header>
+
+<main class="wrap">
+    <!-- KPI Section -->
+    <div class="kpis">
+        <div class="kpi" data-c="purple">
+            <div class="label">Total Students</div>
+            <div class="value">1,250</div>
+            <div class="meta">+5% vs last semester</div>
+        </div>
+        <div class="kpi" data-c="navy">
+            <div class="label">Active Courses</div>
+            <div class="value">42</div>
+            <div class="meta">Ongoing this semester</div>
+        </div>
+        <div class="kpi" data-c="green">
+            <div class="label">Avg Attendance</div>
+            <div class="value">87%</div>
+            <div class="meta">Across all courses</div>
+        </div>
+        <div class="kpi" data-c="pink">
+            <div class="label">Assignments</div>
+            <div class="value">3.4K</div>
+            <div class="meta">Submitted</div>
+        </div>
+        <div class="kpi" data-c="orange">
+            <div class="label">Exams</div>
+            <div class="value">18</div>
+            <div class="meta">Scheduled</div>
+        </div>
+        <div class="kpi" data-c="violet">
+            <div class="label">Results</div>
+            <div class="value">12</div>
+            <div class="meta">Published</div>
+        </div>
+        <div class="kpi" data-c="cyan">
+            <div class="label">Fees Collected</div>
+            <div class="value">$54K</div>
+            <div class="meta">This semester</div>
+        </div>
+    </div>
+
+    <!-- Charts & Tables -->
+    <div class="grid">
+        <div class="card">
+            <h3>Students by Faculty <span class="sub">(current)</span></h3>
+            <canvas id="donut"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Weekly Attendance</h3>
+            <canvas id="attendance"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Exam Results</h3>
+            <canvas id="results"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Departments</h3>
+            <table class="table">
+                <thead><tr><th>Department</th><th>Students</th><th>Faculty</th><th>Courses</th></tr></thead>
+                <tbody>
+                <tr><td><span class="chip">Science</span></td><td>320</td><td>25</td><td>12</td></tr>
+                <tr><td><span class="chip">Engineering</span></td><td>280</td><td>20</td><td>10</td></tr>
+                <tr><td><span class="chip">Business</span></td><td>250</td><td>18</td><td>9</td></tr>
+                <tr><td><span class="chip">IT</span></td><td>280</td><td>22</td><td>8</td></tr>
+                <tr><td><span class="chip">Arts</span></td><td>120</td><td>10</td><td>6</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Faculty</h3>
+            <table class="table">
+                <thead><tr><th>Name</th><th>Dept</th><th>Courses</th></tr></thead>
+                <tbody>
+                <tr><td>Dr. Silva</td><td>Science</td><td>3</td></tr>
+                <tr><td>Prof. Perera</td><td>Engineering</td><td>4</td></tr>
+                <tr><td>Ms. Fernando</td><td>Business</td><td>2</td></tr>
+                <tr><td>Mr. Wijesinghe</td><td>IT</td><td>3</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer>© 2025 Academic Portal System</footer>
+
+<script>
+    // Donut Chart - Students by Faculty
+    new Chart(document.getElementById("donut"), {
+        type:"doughnut",
+        data:{
+            labels:["Science","Engineering","Business","IT","Arts"],
+            datasets:[{
+                data:[320,280,250,280,120],
+                backgroundColor:["#3b82f6","#8b5cf6","#f97316","#06b6d4","#ec4899"],
+                borderWidth:0
+            }]
+        },
+        options:{ cutout:"65%", plugins:{legend:{position:"bottom"}} }
+    });
+
+    // Weekly Attendance
+    new Chart(document.getElementById("attendance"), {
+        type:"bar",
+        data:{
+            labels:["Week 1","Week 2","Week 3","Week 4","Week 5"],
+            datasets:[
+                {label:"Science", data:[85,88,90,87,89], backgroundColor:"#3b82f6"},
+                {label:"Engineering", data:[82,84,85,83,86], backgroundColor:"#8b5cf6"},
+                {label:"Business", data:[80,82,81,79,83], backgroundColor:"#f97316"},
+                {label:"IT", data:[88,90,89,91,92], backgroundColor:"#06b6d4"}
+            ]
+        },
+        options:{ scales:{y:{beginAtZero:true,max:100}} }
+    });
+
+    // Exam Results
+    new Chart(document.getElementById("results"), {
+        type:"bar",
+        data:{
+            labels:["Science","Engineering","Business","IT","Arts"],
+            datasets:[
+                {label:"Pass %", data:[85,82,80,88,75], backgroundColor:"#16a34a"},
+                {label:"Fail %", data:[10,12,15,8,20], backgroundColor:"#ef4444"},
+                {label:"Distinction %", data:[5,6,5,4,5], backgroundColor:"#eab308"}
+            ]
+        },
+        options:{ scales:{y:{beginAtZero:true,max:100}} }
+    });
+</script>
+</body>
+</html>

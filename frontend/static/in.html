@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META ============================================= -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="university, education, courses, learning" />
+    <meta name="author" content="EduChamp University" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- DESCRIPTION -->
+    <meta name="description" content="EduChamp University - Premier education for future leaders" />
+
+    <!-- OG -->
+    <meta property="og:title" content="EduChamp University" />
+    <meta property="og:description" content="Premier education for future leaders" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3710/3710271.png" type="image/x-icon" />
+
+    <!-- PAGE TITLE HERE ============================================= -->
+    <title>EduChamp University - Premier Education</title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CUSTOM CSS -->
+    <style>
+        :root {
+            --primary: #3E54AC;
+            --secondary: #655DBB;
+            --accent: #BFACE2;
+            --light: #ECF2FF;
+            --dark: #1E1E2C;
+            --success: #28a745;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            color: #444;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .bg-primary {
+            background-color: var(--primary) !important;
+        }
+
+        .text-primary {
+            color: var(--primary) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: white;
+        }
+
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .navbar-nav .nav-item.active .nav-link {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(30, 30, 44, 0.8), rgba(30, 30, 44, 0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 100px;
+            color: white;
+        }
+
+        /* Services Section */
+        .service-bx {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .service-bx:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-bx .action-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-bx .info-bx {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-bx .feature-box-sm {
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -40px;
+            position: relative;
+            z-index: 1;
+            font-size: 24px;
+        }
+
+        /* Courses Section */
+        .cours-bx {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .cours-bx:hover {
+            transform: translateY(-10px);
+        }
+
+        .cours-bx .action-box {
+            position: relative;
+        }
+
+        .cours-bx .action-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .cours-bx .action-box .btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cours-bx:hover .action-box .btn {
+            opacity: 1;
+        }
+
+        .cours-bx .info-bx {
+            padding: 20px;
+        }
+
+        .cours-more-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--light);
+            border-top: 1px solid #eee;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(rgba(62, 84, 172, 0.9), rgba(62, 84, 172, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            color: white;
+        }
+
+        /* Testimonials */
+        .testimonial-bx {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 15px;
+        }
+
+        .testimonial-thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+
+        .testimonial-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #ccc;
+        }
+
+        .footer-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer ul li a:hover {
+            color: white;
+        }
+
+        .gallery-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-grid-4 img {
+            width: 100%;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-grid-4 img:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        /* Utilities */
+        .section-area {
+            padding: 80px 0;
+        }
+
+        .section-sp2 {
+            padding: 100px 0;
+        }
+
+        .radius-xl {
+            border-radius: 10px;
+        }
+
+        .heading-bx h2 {
+            position: relative;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        .heading-bx h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .heading-bx.text-center h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .hero-section {
+                padding: 100px 0 80px;
+            }
+
+            .section-area, .section-sp2 {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-section {
+                padding: 80px 0 60px;
+            }
+
+            .gallery-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Header Top ==== -->
+<header class="header">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-question-circle me-2"></i>Ask a Question</a></li>
+                        <li class="list-inline-item ms-3"><a href="mailto:support@website.com"><i class="fa fa-envelope me-2"></i>Support@website.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <select class="form-select form-select-sm d-inline-block w-auto">
+                                <option>English UK</option>
+                                <option>English US</option>
+                            </select>
+                        </li>
+                        <li class="list-inline-item ms-2"><a href="login.html" class="text-white">Login</a></li>
+                        <li class="list-inline-item ms-2"><a href="register.html" class="text-white">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="https://cdn.educationusa.org/s3fs-public/logo.png" alt="EduChamp University" height="40">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html">Home 1</a></li>
+                            <li><a class="dropdown-item" href="#">Home 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Pages</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">About Us</a></li>
+                            <li><a class="dropdown-item" href="#">Events</a></li>
+                            <li><a class="dropdown-item" href="#">FAQs</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Our Courses</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">All Courses</a></li>
+                            <li><a class="dropdown-item" href="#">Course Details</a></li>
+                            <li><a class="dropdown-item" href="#">Instructors</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Blog</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Blog Grid</a></li>
+                            <li><a class="dropdown-item" href="#">Blog List</a></li>
+                            <li><a class="dropdown-item" href="#">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-primary me-2"><i class="fa fa-search"></i></a>
+                    <a href="#" class="btn btn-primary">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header Top END ==== -->
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">Welcome To EduChamp University</h1>
+                <p class="lead mb-4">Better Education For A Better World</p>
+                <p class="mb-5">EduChamp University is a premier institution dedicated to providing world-class education, fostering innovation, and developing future leaders who will make a positive impact on society.</p>
+                <div class="d-flex justify-content-center flex-wrap gap-3">
+                    <a href="#" class="btn btn-primary btn-lg px-4 py-2">Explore Courses</a>
+                    <a href="#" class="btn btn-outline-light btn-lg px-4 py-2">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="section-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-bx">
+                    <div class="action-box">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Industry Leaders">
+                    </div>
+                    <div class="info-bx text-center">
+                        <div class="feature-box-sm radius bg-white text-primary shadow">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h4 class="mt-3">Best Industry Leaders</h4>
+                        <p class="mb-3">Learn from experienced professionals and industry experts</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-bx">
+                    <div class="action-box">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Learning">
+                    </div>
+                    <div class="info-bx text-center">
+                        <div class="feature-box-sm radius bg-white text-primary shadow">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="mt-3">Learn Courses Online</h4>
+                        <p class="mb-3">Access high-quality courses from anywhere in the world</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-bx">
+                    <div class="action-box">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Library">
+                    </div>
+                    <div class="info-bx text-center">
+                        <div class="feature-box-sm radius bg-white text-primary shadow">
+                            <i class="fa fa-book"></i>
+                        </div>
+                        <h4 class="mt-3">Huge Library</h4>
+                        <p class="mb-3">Access thousands of books, journals, and research papers</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses Section -->
+<section class="section-area bg-light">
+    <div class="container">
+        <div class="heading-bx text-center">
+            <h2 class="title-head">Popular Courses</h2>
+            <p>Explore our most popular courses and find the perfect one for you</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="cours-bx">
+                    <div class="action-box">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Course">
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                    <div class="info-bx">
+                        <h4><a href="#">Computer Science Fundamentals</a></h4>
+                        <p>Learn the basics of computer science and programming</p>
+                    </div>
+                    <div class="cours-more-info">
+                        <div class="review">
+                            <span>4.8</span>
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star-half-alt text-warning"></i></li>
+                            </ul>
+                        </div>
+                        <div class="price">
+                            <h5 class="text-primary mb-0">$59</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="cours-bx">
+                    <div class="action-box">
+                        <img src="https://images.unsplash.com/photo-1576671414121-aa0eb16b32a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Course">
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                    <div class="info-bx">
+                        <h4><a href="#">Business Management</a></h4>
+                        <p>Master the art of business management and leadership</p>
+                    </div>
+                    <div class="cours-more-info">
+                        <div class="review">
+                            <span>4.6</span>
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                            </ul>
+                        </div>
+                        <div class="price">
+                            <h5 class="text-primary mb-0">$69</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="cours-bx">
+                    <div class="action-box">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Course">
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                    <div class="info-bx">
+                        <h4><a href="#">Graphic Design Masterclass</a></h4>
+                        <p>Learn professional graphic design techniques</p>
+                    </div>
+                    <div class="cours-more-info">
+                        <div class="review">
+                            <span>4.9</span>
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
+                            </ul>
+                        </div>
+                        <div class="price">
+                            <h5 class="text-primary mb-0">$79</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-primary btn-lg">View All Courses</a>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="text-white mb-3">Subscribe Our Newsletter</h2>
+                <p class="text-white-50 mb-0">Stay updated with our latest news and course offerings</p>
+            </div>
+            <div class="col-lg-6">
+                <form class="d-flex">
+                    <input type="email" class="form-control form-control-lg me-2" placeholder="Your Email Address">
+                    <button type="submit" class="btn btn-light btn-lg">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section-area">
+    <div class="container">
+        <div class="heading-bx text-center">
+            <h2 class="title-head">What Students Say</h2>
+            <p>Read testimonials from our students around the world</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-bx text-center">
+                    <div class="testimonial-thumb">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User">
+                    </div>
+                    <div class="testimonial-info">
+                        <h5 class="name">Sarah Johnson</h5>
+                        <p class="position">Computer Science Student</p>
+                    </div>
+                    <p class="testimonial-text">"The courses at EduChamp University are well-structured and the instructors are knowledgeable. I've gained valuable skills that helped me land my dream job."</p>
+                    <div class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="testimonial-bx text-center">
+                    <div class="testimonial-thumb">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    </div>
+                    <div class="testimonial-info">
+                        <h5 class="name">David Wilson</h5>
+                        <p class="position">Business Student</p>
+                    </div>
+                    <p class="testimonial-text">"The online learning platform is excellent and the support from professors is outstanding. I would recommend EduChamp to anyone looking to further their education."</p>
+                    <div class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star-half-alt text-warning"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="testimonial-bx text-center">
+                    <div class="testimonial-thumb">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="User">
+                    </div>
+                    <div class="testimonial-info">
+                        <h5 class="name">Emily Chen</h5>
+                        <p class="position">Graphic Design Student</p>
+                    </div>
+                    <p class="testimonial-text">"The hands-on projects and real-world applications make learning at EduChamp University engaging and practical. I've built an impressive portfolio during my studies."</p>
+                    <div class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <div class="container pt-5 pb-3">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h4 class="footer-title">About EduChamp</h4>
+                <p>EduChamp University is dedicated to providing quality education, fostering innovation, and developing future leaders who will make a positive impact on society.</p>
+                <ul class="list-inline mt-4">
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Courses</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h4 class="footer-title">Contact Info</h4>
+                <ul>
+                    <li><i class="fa fa-map-marker-alt me-2"></i> 123 Education Street, City, Country</li>
+                    <li><i class="fa fa-phone-alt me-2"></i> +1 234 567 8900</li>
+                    <li><i class="fa fa-envelope me-2"></i> info@educhamp.com</li>
+                    <li><i class="fa fa-clock me-2"></i> Mon-Fri: 9:00 AM - 5:00 PM</li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h4 class="footer-title">Gallery</h4>
+                <div class="gallery-grid-4">
+                    <a href="#"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1576671414121-aa0eb16b32a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                    <a href="#"><img src="https://images.unsplash.com/photo-1560785496-3c9d27877182?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Gallery"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom text-center">
+        <div class="container">
+            <p class="mb-0">© 2023 EduChamp University. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script>
+    // Simple animation for elements on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const animatedElements = document.querySelectorAll('.service-bx, .cours-bx, .testimonial-bx');
+
+        function checkIfInView() {
+            animatedElements.forEach(function(element) {
+                const position = element.getBoundingClientRect();
+
+                if(position.top < window.innerHeight && position.bottom >= 0) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize opacity and position
+        animatedElements.forEach(function(element) {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Check on load and scroll
+        checkIfInView();
+        window.addEventListener('scroll', checkIfInView);
+    });
+</script>
+</body>
+
+</html>

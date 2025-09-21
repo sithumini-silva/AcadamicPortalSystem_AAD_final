@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result Management - EduChamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/all/result.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-graduation-cap"></i>EduChamp
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html"><i class="fas fa-home me-1"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../static/teacherDash.html"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#"><i class="fas fa-clipboard-list me-1" id="resId"></i> Result Management</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="main-container">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Navigation</h2>
+        </div>
+
+        <div class="nav-item">
+            <a href="../static/teacherDash.html" class="nav-link">
+                <i class="fas fa-tachometer-alt"></i>Dashboard
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="login.html" class="nav-link">
+                <i class="fas fa-sign-in-alt"></i>Login
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="../index.html" class="nav-link">
+                <i class="fas fa-home"></i>Home
+            </a>
+        </div>
+
+        <div class="section-title">Online Papers</div>
+        <div class="nav-item">
+            <a href="result.html" class="nav-link active">
+                <i class="fas fa-chart-line"></i>Results
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="exam.html" class="nav-link">
+                <i class="fas fa-file-alt"></i>Exams
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="paper2.html" class="nav-link">
+                <i class="fas fa-copy"></i>Papers
+            </a>
+        </div>
+
+        <div class="section-title">Forms</div>
+        <div class="nav-item">
+            <a href="subject.html" class="nav-link">
+                <i class="fas fa-book"></i>Subjects
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="user.html" class="nav-link">
+                <i class="fas fa-users"></i>Users
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="question.html" class="nav-link">
+                <i class="fas fa-question-circle"></i>Questions
+            </a>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <h1 class="page-title"><i class="fas fa-chart-line me-2"></i>Exam Result Management</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-pen me-2"></i>Result Details
+            </div>
+            <div class="card-body">
+                <form class="row g-3" id="examResultForm">
+                    <div class="form-grid">
+                        <div class="mb-3">
+                            <label for="result_id" class="form-label">Result ID</label>
+                            <input type="text" class="form-control" id="result_id" placeholder="Enter result ID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exam_id" class="form-label">Exam ID</label>
+                            <select class="form-select" id="exam_id">
+                                <option value="" selected disabled>Select Exam</option>
+                                <option value="1">Exam 1 - Mathematics</option>
+                                <option value="2">Exam 2 - Science</option>
+                                <option value="3">Exam 3 - English</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="student_id" class="form-label">Student ID</label>
+                            <select class="form-select" id="student_id">
+                                <option value="" selected disabled>Select Student</option>
+                                <option value="101">1</option>
+                                <option value="102">2</option>
+                                <option value="103">3</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="msg" class="form-label">Message</label>
+                            <textarea class="form-control" id="msg" placeholder="Enter result message" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="total_mark" class="form-label">Total Marks</label>
+                            <input type="number" class="form-control" id="total_mark" placeholder="Enter total marks">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-primary" onclick="saveResult()">
+                                <i class="fas fa-save me-1"></i>Save
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="updateResult()">
+                                <i class="fas fa-edit me-1"></i>Update
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="deleteResult()">
+                                <i class="fas fa-trash me-1"></i>Delete
+                            </button>
+                            <button type="button" class="btn btn-info" onclick="viewResults()">
+                                <i class="fas fa-eye me-1"></i>View Results
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser me-1"></i>Clear
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-list me-2"></i>Results List</span>
+                <button class="btn btn-sm btn-light" onclick="viewResults()">
+                    <i class="fas fa-refresh me-1"></i>Refresh
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-container">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Result ID</th>
+                            <th>Exam ID</th>
+                            <th>Student ID</th>
+                            <th>Message</th>
+                            <th>Total Marks</th>
+                            <th>Grade</th>
+                        </tr>
+                        </thead>
+                        <tbody id="resultTableBody">
+                        <tr>
+                            <td colspan="6" class="text-center p-4 text-muted">
+                                No result data available. Click Refresh to load results.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notification" class="notification">
+    <i class="fas fa-check-circle"></i>
+    <span id="notification-text">Operation completed successfully!</span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    // Function to show notification
+    function showNotification(message, isSuccess = true) {
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+
+        notificationText.textContent = message;
+        notification.className = isSuccess ? 'notification show' : 'notification show error';
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+
+    // Function to clear form
+    function clearForm() {
+        document.getElementById('examResultForm').reset();
+        showNotification("Form cleared", true);
+    }
+
+    // Function to determine grade based on marks
+    function calculateGrade(marks) {
+        if (marks >= 90) return { grade: 'A', class: 'grade-A' };
+        if (marks >= 80) return { grade: 'B', class: 'grade-B' };
+        if (marks >= 70) return { grade: 'C', class: 'grade-C' };
+        if (marks >= 60) return { grade: 'D', class: 'grade-D' };
+        return { grade: 'F', class: 'grade-F' };
+    }
+
+    // Function to save result
+    function saveResult() {
+        const resultId = document.getElementById('result_id').value;
+        const examId = document.getElementById('exam_id').value;
+        const studentId = document.getElementById('student_id').value;
+        const message = document.getElementById('msg').value;
+        const totalMark = document.getElementById('total_mark').value;
+
+        if (!resultId || !examId || !studentId || !message || !totalMark) {
+            showNotification("Please fill in all fields", false);
+            return;
+        }
+
+        // In a real application, you would send this data to your server
+        console.log("Saving result:", { resultId, examId, studentId, message, totalMark });
+        showNotification("Result saved successfully!");
+
+        // Clear form and refresh table
+        clearForm();
+        viewResults();
+    }
+
+    // Function to update result
+    function updateResult() {
+        const resultId = document.getElementById('result_id').value;
+        if (!resultId) {
+            showNotification("Please enter a Result ID to update", false);
+            return;
+        }
+
+        const examId = document.getElementById('exam_id').value;
+        const studentId = document.getElementById('student_id').value;
+        const message = document.getElementById('msg').value;
+        const totalMark = document.getElementById('total_mark').value;
+
+        if (!examId || !studentId || !message || !totalMark) {
+            showNotification("Please fill in all fields", false);
+            return;
+        }
+
+        // In a real application, you would send this data to your server
+        console.log("Updating result:", { resultId, examId, studentId, message, totalMark });
+        showNotification("Result updated successfully!");
+
+        // Clear form and refresh table
+        clearForm();
+        viewResults();
+    }
+
+    // Function to delete result
+    function deleteResult() {
+        const resultId = document.getElementById('result_id').value;
+        if (!resultId) {
+            showNotification("Please enter a Result ID to delete", false);
+            return;
+        }
+
+        if (confirm(`Are you sure you want to delete result ${resultId}?`)) {
+            // In a real application, you would send a delete request to your server
+            console.log("Deleting result:", resultId);
+            showNotification("Result deleted successfully!");
+
+            // Clear form and refresh table
+            clearForm();
+            viewResults();
+        }
+    }
+
+    // Function to view results
+    function viewResults() {
+        // In a real application, you would fetch this data from your server
+        const mockResults = [
+            { id: 1, examId: 1, studentId: 101, message: "Excellent performance", totalMark: 95 },
+            { id: 2, examId: 1, studentId: 102, message: "Good effort", totalMark: 82 },
+            { id: 3, examId: 2, studentId: 103, message: "Needs improvement", totalMark: 65 },
+            { id: 4, examId: 3, studentId: 101, message: "Outstanding", totalMark: 98 }
+        ];
+
+        const tableBody = document.getElementById('resultTableBody');
+        tableBody.innerHTML = '';
+
+        if (mockResults.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="6" class="text-center p-4 text-muted">No results found.</td></tr>';
+            return;
+        }
+
+        mockResults.forEach(result => {
+            const gradeInfo = calculateGrade(result.totalMark);
+            const row = document.createElement('tr');
+
+            // Add click event to populate form
+            row.addEventListener('click', () => {
+                document.getElementById('result_id').value = result.id;
+                document.getElementById('exam_id').value = result.examId;
+                document.getElementById('student_id').value = result.studentId;
+                document.getElementById('msg').value = result.message;
+                document.getElementById('total_mark').value = result.totalMark;
+
+                showNotification("Result data loaded for editing");
+            });
+
+            row.innerHTML = `
+                <td>${result.id}</td>
+                <td>Exam ${result.examId}</td>
+                <td>Student ${result.studentId}</td>
+                <td>${result.message}</td>
+                <td>${result.totalMark}</td>
+                <td><span class="grade-badge ${gradeInfo.class}">${gradeInfo.grade}</span></td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+
+        showNotification("Results loaded successfully");
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        viewResults();
+    });
+</script>
+</body>
+</html>

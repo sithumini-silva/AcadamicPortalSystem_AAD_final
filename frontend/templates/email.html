@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sender</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../css/all/email.css">
+</head>
+<body>
+<nav class="email-navbar">
+    <div class="nav-brand">
+        📧 MailMaster
+    </div>
+
+    <div class="nav-items">
+        <div class="nav-item" onclick="openInboxPopup()">📥 Inbox <span class="mailbox-count">18</span></div>
+
+        <!-- Popup for inbox -->
+        <div id="inboxPopup" class="popup-overlay">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closeInboxPopup()">❌</span>
+                <h3>📥 Inbox</h3>
+                <div id="inboxEmailList">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup for Sent Email Viewer -->
+        <!-- Sent Nav Item -->
+        <div class="nav-item" onclick="openSentPopup()">📤 Sent</div>
+
+        <!-- Popup for Sent -->
+        <div id="sentPopup" class="popup-overlay">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closeSentPopup()">❌</span>
+                <h3>📤 Sent Emails</h3>
+                <div id="sentEmailList" style="max-height: 300px; overflow-y: auto;">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Trash Nav Item -->
+        <div class="nav-item" onclick="openTrashPopup()">🗑️ Trash</div>
+
+        <!-- Popup for Trash -->
+        <div id="trashPopup" class="popup-overlay">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closeTrashPopup()">❌</span>
+                <h3>🗑️ Trash</h3>
+                <div id="trashEmailList" style="max-height: 300px; overflow-y: auto;">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Popup for subjects -->
+        <div class="nav-item" onclick="openSubjectsPopup()">📁 Subjects <span id="subjectsMailboxCount" class="mailbox-count"></span></div>
+
+        <!-- Popup for Subjects -->
+        <div id="subjectsPopup" class="popup-overlay">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closeSubjectsPopup()">❌</span>
+                <h3>📁 Subjects</h3>
+                <div id="subjectsEmailList" style="max-height: 300px; overflow-y: auto;">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Popup for Users -->
+        <div class="nav-item" onclick="openUsersPopup()">👤 Users <span id="usersMailboxCount" class="mailbox-count"></span></div>
+
+        <!-- Popup for Users -->
+        <div id="usersPopup" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closeUsersPopup()">❌</span>
+                <h3>👤 Users</h3>
+                <div id="usersList" style="max-height: 300px; overflow-y: auto;">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Popup for Exams -->
+        <div class="nav-item" onclick="openExamsPopup()">📚 Exams <span id="examsMailboxCount" class="mailbox-count"></span></div>
+
+        <!-- Popup for Exams -->
+        <div id="examsPopup" class="popup-overlay" style="display: none;">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closeExamsPopup()">❌</span>
+                <h3>📚 Exams</h3>
+                <div id="examsList" style="max-height: 300px; overflow-y: auto;">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="action-buttons">
+
+        <div class="nav-item">
+            <li ><a class="nav-link" href="index.html" style="color:white;">Home</a></li>
+        </div>
+    </div>
+</nav>
+
+<h2>📧Send Email</h2>
+<form id="emailForm">
+    <input type="text" id="to" placeholder="Recipient Emails (comma separated)" required><br><br>
+    <input type="text" id="subject" placeholder="Subject" required><br><br>
+    <textarea id="body" placeholder="Message" required rows="5" cols="40"></textarea><br><br>
+    <button type="submit">📨Send Email</button>
+</form>
+
+<script src="../js/mailManage.js"></script>
+<script>
+
+
+</script>
+</body>
+</html>

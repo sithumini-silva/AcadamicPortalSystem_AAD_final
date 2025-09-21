@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuesax Dashboard</title>
+    <style>
+        :root {
+            --primary: #f30e38;      /* Main Purple */
+            --secondary: #d4afb9;    /* Red for stats */
+            --success: #28C76F;      /* Green */
+            --warning: #FF9F43;      /* Orange */
+            --info: #00CFE8;         /* Cyan */
+            --text: #6E6B7B;        /* Main Text */
+            --border: #EBE9F1;       /* Light Gray */
+        }
+
+        .stat-card[style*="primary"] { border-color: var(--primary) !important; }
+        .stat-card[style*="success"] { border-color: var(--success) !important; }
+        .stat-card[style*="warning"] { border-color: var(--warning) !important; }
+        .stat-card[style*="info"] { border-color: var(--info) !important; }
+
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f8f8;
+            margin-left: 260px;
+        }
+
+        /* Left Side Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 260px;
+            background: #fff;
+            box-shadow: 0 4px 12px 0 rgba(0,0,0,.12);
+            padding: 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .nav-item {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            color: #6e6b7b;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover {
+            background: rgba(115,103,240,.12);
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .stat-card h3 {
+            color: #6e6b7b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Progress Bars */
+        .progress-bar {
+            height: 8px;
+            background: #ebe9f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(
+                    to right,
+                    var(--primary) 0%,
+                    #CE9FFC 100%
+            );
+        }
+        /* Browser Stats Colors */
+        .browser-item:nth-child(1) span:last-child { color: var(--success); }
+        .browser-item:nth-child(2) span:last-child { color: var(--warning); }
+        .browser-item:nth-child(3) span:last-child { color: var(--secondary); }
+
+        /* Client Retention Colors */
+        .client-retention div:first-child .value { color: var(--success); }
+        .client-retention div:last-child .value { color: var(--warning); }
+
+        /* Browser Stats */
+        .browser-stats {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .browser-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+        /* Updated Navigation Bar Colors */
+        .sidebar {
+            background: linear-gradient(to right, #0b2a62, rgba(37, 50, 201, 0.8));
+            color: #ffffff;
+        }
+
+        .nav-item:hover {
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            color: #070707 !important;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+
+        .nav-item{
+            color: #fcfbfb;
+        }
+        .logo {
+            color: #f0f0f0 !important; /* Light gray logo */
+        }
+
+        /* Add this to your existing CSS */
+        .nav-link {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: black;
+            transform: translateX(5px);
+
+
+        }
+
+        .nav-item.active .nav-link {
+            background: rgba(94, 236, 63, 0.12);
+            border-left: 3px solid var(--primary);
+        }
+        /* Keep other styles the same */
+
+        /* Existing CSS එකට මෙම styles එකතු කරන්න */
+        .nav-item {
+            width: auto; /* Default width එක ඉවත් කිරීම */
+            display: inline-block; /* Link වල පළල content අනුව adjust වීම */
+        }
+
+        .nav-link {
+            width: auto; /* සම්පූර්ණ පළල ඉවත් කිරීම */
+            padding: 8px 15px; /* Compact padding */
+            white-space: nowrap; /* Text wrap නොකිරීම */
+        }
+
+        .sidebar {
+            padding: 1rem; /* Sidebar padding අඩු කිරීම */
+        }
+        .sidebar {
+            /* පෙර styles එකම තබාගන්න */
+            padding: 1rem; /* Reduced padding */
+        }
+
+        .nav-item {
+            margin: 5px 0;
+            display: inline-block; /* Change to inline-block */
+            width: auto; /* Auto width */
+        }
+
+        .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 8px 15px; /* Smaller padding */
+            font-size: 0.875rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: block;
+            width: auto; /* Remove full width */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        /* Hover effect එක වැඩිදියුණු කිරීම */
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(0.98);
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 200px;
+            background: #4a55a2;
+            color: white;
+            padding: 1rem;
+            box-shadow: 2px 0 5px rgba(0,0,0,.1);
+            font-size: 0.85rem;
+        }
+
+        body {
+            margin-left: 200px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .nav-item {
+            margin: 4px 0;
+            display: block;
+        }
+
+        .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(3px);
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar h4 {
+            font-size: 1rem;
+            margin: 1rem 0 0.5rem;
+            color: #d0d0d0 !important;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+<!-- Left Navigation -->
+<nav class="sidebar">
+    <h2>Navigation bar</h2>
+    <!-- Main Navigation -->
+    <div class="nav-item">
+        <a href="/dashboard" class="nav-link">Dashboard</a>
+    </div>
+    <div class="nav-item">
+        <a href="/analytics" class="nav-link">Analytics</a>
+    </div>
+    <div class="nav-item">
+        <a href="/ecommerce" class="nav-link">eCommerce</a>
+    </div>
+
+    <!-- UI Elements Section -->
+    <h4 style="margin: 2rem 0 1rem; color: var(--secondary)">UI ELEMENTS</h4>
+    <div class="nav-item">
+        <a href="/calendar" class="nav-link">Calendar</a>
+    </div>
+
+    <div class="nav-item">
+        <a href="/components" class="nav-link">Components</a>
+    </div>
+
+    <!-- Forms Section -->
+    <h4 style="margin: 2rem 0 1rem; color: var(--secondary)">FORMS</h4>
+    <div class="nav-item">
+        <a href="/form-elements" class="nav-link">Form Elements</a>
+    </div>
+    <div class="nav-item">
+        <a href="/form-layouts" class="nav-link">Form Layouts</a>
+    </div>
+    <div class="nav-item">
+        <a href="/form-wizard" class="nav-link">Form Wizard</a>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="dashboard-content">
+    <!-- Stats Row -->
+    <div class="stats-container">
+        <div class="stat-card" style="border-color: var(--primary)">
+            <h3>Subscribers</h3>
+            <div class="value">92.6K</div>
+        </div>
+
+        <div class="stat-card" style="border-color: var(--success)">
+            <h3>Revenue Generated</h3>
+            <div class="value">$97.5K</div>
+        </div>
+
+        <div class="stat-card" style="border-color: var(--warning)">
+            <h3>Quarterly Sales</h3>
+            <div class="value">36%</div>
+        </div>
+
+        <div class="stat-card" style="border-color: var(--info)">
+            <h3>Orders Received</h3>
+            <div class="value">97.5K</div>
+        </div>
+    </div>
+
+    <!-- Goal Overview -->
+    <div class="stat-card">
+        <h3>Goal Overview</h3>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div style="margin-top: 1rem; color: var(--primary)">83% Achieved</div>
+    </div>
+
+    <!-- Browser Statistics -->
+    <div class="browser-stats">
+        <h3>Browser Statistics</h3>
+        <div class="browser-item">
+            <span>Google Chrome</span>
+            <span>73%</span>
+        </div>
+        <!-- Add more browsers here -->
+    </div>
+
+    <!-- Client Retention -->
+    <div class="stat-card" style="margin-top: 2rem;">
+        <h3>Client Retention</h3>
+        <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+            <div>
+                <div class="value">786,617</div>
+                <div>Completed</div>
+            </div>
+            <div>
+                <div class="value">13,561</div>
+                <div>In Progress</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

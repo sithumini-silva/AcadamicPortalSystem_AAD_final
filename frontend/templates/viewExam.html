@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - EduChamp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/all/viewExam.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-graduation-cap me-2"></i>EduChamp
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt me-1"></i> LogIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../static/studentDash.html"><i class="fas fa-home me-1"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="viewResul.html"><i class="fas fa-clipboard-list me-1"></i> Exam Results</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="main-container">
+    <h1 class="page-title"><i class="fas fa-clipboard-list me-2"></i>Exam Schedule</h1>
+
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="user-name">Student Panel</div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="viewResul.html"><i class="fas fa-medal"></i> Results</a></li>
+                <li><a href="paper.html"><i class="fas fa-book"></i> Ready Papers</a></li>
+                <li><a href="paper2.html"><i class="fas fa-file-alt"></i> Papers</a></li>
+                <li><a href="viewExam.html" class="active"><i class="fas fa-clipboard-list"></i> Exams</a></li>
+                <li><a href="../static/studentDash.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            </ul>
+        </div>
+
+        <div class="content-area">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span id="examshedule"><i class="fas fa-list me-2"></i>Exam Schedule</span>
+                    <button class="btn btn-sm btn-light" onclick="viewExams()">
+                        <i class="fas fa-refresh me-1"></i>Refresh
+                    </button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-container">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Exam ID</th>
+                                <th>Duration</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody id="examTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center p-4 text-muted">
+                                    Loading exam data...
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="examshedule2">
+                    <i class="fas fa-calendar me-2"></i>Upcoming Exams
+                </div>
+                <div class="card-body" id="upcomingExams">
+                    <p class="text-center text-muted">Loading upcoming exams...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notification" class="notification">
+    <i class="fas fa-check-circle"></i>
+    <span id="notification-text">Operation completed successfully!</span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Function to show notification
+    function showNotification(message, isSuccess = true) {
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+
+        notificationText.textContent = message;
+        notification.className = isSuccess ? 'notification show' : 'notification show error';
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+
+    // Function to get JWT token
+    function getToken() {
+        return localStorage.getItem("jwtToken");
+    }
+
+    // Function to determine exam status
+    function getExamStatus(startDate, endDate) {
+        const now = new Date();
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        if (now < start) {
+            return { status: 'upcoming', text: 'Upcoming', class: 'status-upcoming' };
+        } else if (now >= start && now <= end) {
+            return { status: 'ongoing', text: 'Ongoing', class: 'status-ongoing' };
+        } else {
+            return { status: 'completed', text: 'Completed', class: 'status-completed' };
+        }
+    }
+
+    // Function to format duration (hours to h/m)
+    function formatDuration(hours) {
+        if (hours == null || isNaN(hours)) {
+            return "2 hours"; // show this instead of 0h / N/A
+        }
+
+        const totalMinutes = Math.round(hours * 60); // convert to minutes
+        const h = Math.floor(totalMinutes / 60);
+        const m = totalMinutes % 60;
+
+        if (h > 0 && m > 0) {
+            return `${h}h ${m}m`;
+        } else if (h > 0) {
+            return `${h}h`;
+        } else {
+            return `${m}m`;
+        }
+    }
+
+
+
+
+    // Function to view exams
+    function viewExams() {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/exam/get",
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + getToken()
+            },
+            success: function (response) {
+                let tableBody = $("#examTableBody");
+                let upcomingExams = $("#upcomingExams");
+
+                tableBody.empty();
+                upcomingExams.empty();
+
+                if (response && Array.isArray(response) && response.length > 0) {
+                    // Sort exams by start date
+                    response.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+
+                    response.forEach(exam => {
+                        const status = getExamStatus(exam.startDate, exam.endDate);
+                        const formattedDuration = formatDuration(exam.duration);
+
+                        tableBody.append(`
+                            <tr>
+                                <td>${exam.id}</td>
+                                <td>${formattedDuration}</td>
+                                <td>${exam.description || 'No description'}</td>
+                                <td>${new Date(exam.startDate).toLocaleString()}</td>
+                                <td>${new Date(exam.endDate).toLocaleString()}</td>
+                                <td><span class="exam-status ${status.class}">${status.text}</span></td>
+                            </tr>
+                        `);
+
+                        // Add to upcoming exams if status is upcoming
+                        if (status.status === 'upcoming') {
+                            upcomingExams.append(`
+                                <div class="exam-card">
+                                    <h3>Exam ${exam.id}</h3>
+                                    <div class="exam-meta">
+                                        <span><i class="fas fa-clock"></i> ${formattedDuration}</span>
+                                        <span><i class="fas fa-calendar"></i> ${new Date(exam.startDate).toLocaleDateString()}</span>
+                                        <span><i class="fas fa-building"></i> ${exam.description || 'No description'}</span>
+                                    </div>
+                                    <div class="exam-actions">
+                                        <button class="btn btn-sm btn-primary">View Details</button>
+                                        <button class="btn btn-sm btn-outline-secondary">Add to Calendar</button>
+                                    </div>
+                                </div>
+                            `);
+                        }
+                    });
+
+                    if ($("#upcomingExams").children().length === 0) {
+                        upcomingExams.append('<p class="text-center text-muted">No upcoming exams</p>');
+                    }
+
+                    showNotification("Exams loaded successfully");
+                } else {
+                    tableBody.append('<tr><td colspan="6" class="text-center p-4 text-muted">No exams found.</td></tr>');
+                    upcomingExams.append('<p class="text-center text-muted">No upcoming exams</p>');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching exams:", error);
+                $("#examTableBody").html('<tr><td colspan="6" class="text-center p-4 text-muted">Error loading exams. Please try again.</td></tr>');
+                showNotification("Error loading exams", false);
+
+                // Check if it's an authentication error
+                if (xhr.status === 401) {
+                    alert("You are not authenticated. Redirecting to login...");
+                    window.location.href = "login.html";
+                }
+            }
+        });
+    }
+
+    // Initialize when page loads
+    $(document).ready(function () {
+        const token = getToken();
+        if (!token) {
+            alert("You are not logged in! Redirecting to login page...");
+            window.location.href = "login.html";
+            return;
+        }
+
+        viewExams();
+    });
+</script>
+</body>
+</html>
+
+
+
