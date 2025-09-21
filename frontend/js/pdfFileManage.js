@@ -123,12 +123,22 @@ function fetchPDFs() {
                             'Authorization': 'Bearer ' + getJWTToken()
                         },
                         success: function () {
-                            alert('PDF deleted!');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Deleted!',
+                                text: 'PDF deleted!',
+                                confirmButtonText: 'OK'
+                            });
                             resetForm();
                             fetchPDFs(); // Refresh table
                         },
                         error: function (err) {
-                            alert('Delete failed: ' + err.responseText);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Delete Failed',
+                                text: 'Error: ' + err.responseText,
+                                confirmButtonText: 'OK'
+                            });
                         }
                     });
                 }

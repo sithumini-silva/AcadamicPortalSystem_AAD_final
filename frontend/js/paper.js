@@ -173,8 +173,13 @@
     const examId = document.getElementById("examId").value;
 
     if (!userId || !examId) {
-    alert("Please select an exam and user before saving results.");
-    return;
+        Swal.fire({
+            icon: 'warning',
+            title: 'Warning',
+            text: 'Please select an exam and user before saving results.',
+            confirmButtonText: 'OK'
+        });
+        return;
 }
 
 
@@ -206,11 +211,22 @@
 });
 
     const result = await response.json();
-    alert("Saved successfully");
-} catch (error) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Saved!',
+            text: 'Saved successfully',
+            confirmButtonText: 'OK'
+        });
+
+    } catch (error) {
     console.error('Error:', error);
-    alert('Failed to save result.');
-}
+        Swal.fire({
+            icon: 'error',
+            title: 'Failed!',
+            text: 'Failed to save result.',
+            confirmButtonText: 'OK'
+        });
+    }
 }
 
 

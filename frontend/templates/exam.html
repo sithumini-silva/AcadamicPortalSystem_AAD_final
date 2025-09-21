@@ -194,7 +194,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            background: var(--primary);
         }
 
         .btn-warning {
@@ -509,7 +509,12 @@
 
         // Basic validation
         if (!exam.duration || !exam.description || !exam.startDate || !exam.endDate) {
-            alert("Please fill in all fields!");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Please fill in all fields!',
+                showConfirmButton: true
+            });
             return;
         }
 
@@ -522,13 +527,24 @@
             },
             data: JSON.stringify(exam),
             success: function(response) {
-                alert("Exam created successfully!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Exam created successfully!',
+                    showConfirmButton: true
+                });
                 loadNextExamId();
                 viewExams();
                 clearForm();
             },
             error: function(xhr) {
-                alert("Error creating exam! " + xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Error creating exam! ' + xhr.responseText,
+                    showConfirmButton: true
+                });
+
             }
         });
     }
@@ -551,7 +567,13 @@
                 $('#exam_id').val(response);
             },
             error: function(xhr) {
-                alert("Error loading exam ID! " + xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: 'Error loading exam ID! ' + xhr.responseText,
+                    confirmButtonText: 'OK'
+                });
+
             }
         });
     }
@@ -590,7 +612,13 @@
                 }
             },
             error: function(xhr) {
-                alert("Error fetching exams! " + xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Error fetching exams! ' + xhr.responseText,
+                    confirmButtonText: 'OK'
+                });
+
             }
         });
     }
@@ -614,7 +642,13 @@
     function updateExam() {
         const examId = $('#exam_id').val();
         if (!examId) {
-            alert("Please select an exam to update!");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops!',
+                text: 'Please select an exam to update!',
+                confirmButtonText: 'OK'
+            });
+
             return;
         }
 
@@ -634,11 +668,22 @@
             },
             data: JSON.stringify(exam),
             success: function(response) {
-                alert("Exam updated successfully!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Exam updated successfully!',
+                    confirmButtonText: 'OK'
+                });
+
                 viewExams();
             },
             error: function(xhr) {
-                alert("Error updating exam! " + xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Error updating exam! ' + xhr.responseText,
+                    confirmButtonText: 'OK'
+                });
             }
         });
     }
@@ -646,7 +691,12 @@
     function deleteExam() {
         const examId = $('#exam_id').val();
         if (!examId) {
-            alert("Please select an exam to delete!");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'Please select an exam to delete!',
+                confirmButtonText: 'OK'
+            });
             return;
         }
 
@@ -661,13 +711,23 @@
                 "Authorization": "Bearer " + getToken()
             },
             success: function(response) {
-                alert("Exam deleted successfully!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: 'Exam deleted successfully!',
+                    confirmButtonText: 'OK'
+                });
                 viewExams();
                 clearForm();
                 loadNextExamId();
             },
             error: function(xhr) {
-                alert("Error deleting exam! " + xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: "Error deleting exam! " + xhr.responseText,
+                    confirmButtonText: 'OK'
+                });
             }
         });
     }

@@ -4,7 +4,11 @@ $('#emailForm').on('submit', function(e) {
     const token = localStorage.getItem('jwtToken');
 
     if (!token) {
-        alert('You are not authenticated!');
+        Swal.fire({
+            icon: 'error',
+            title: 'Not Authenticated',
+            text: 'You are not authenticated!'
+        });
         return;
     }
 
@@ -13,7 +17,11 @@ $('#emailForm').on('submit', function(e) {
     const body = $('#body').val();
 
     if (recipients.length === 0 || subject === '' || body === '') {
-        alert('Please fill all fields.');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Missing Fields',
+            text: 'Please fill all fields.'
+        });
         return;
     }
 
@@ -30,14 +38,21 @@ $('#emailForm').on('submit', function(e) {
         },
         contentType: 'application/x-www-form-urlencoded',
         success: function(response) {
-            alert('Email sent successfully to all recipients');
+            Swal.fire({
+                icon: 'success',
+                title: 'Email Sent',
+                text: 'Email sent successfully to all recipients'
+            });
             saveEmailRecord(recipients.join(','), subject, body);
             $('#emailForm')[0].reset();
         },
         error: function(xhr, status, error) {
             console.error("Error: " + error);
-            alert('Failed to send email.');
-        }
+            Swal.fire({
+                icon: 'error',
+                title: 'Send Failed',
+                text: 'Failed to send email.'
+            });        }
     });
 });
 
@@ -45,7 +60,11 @@ function saveEmailRecord(recipients, subject, body) {
     const token = localStorage.getItem('jwtToken');
 
     if (!token) {
-        alert('You are not authenticated!');
+        Swal.fire({
+            icon: 'error',
+            title: 'Not Authenticated',
+            text: 'You are not authenticated!'
+        });
         return;
     }
 

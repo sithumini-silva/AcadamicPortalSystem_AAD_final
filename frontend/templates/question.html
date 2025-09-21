@@ -648,7 +648,12 @@
         console.log("JWT Token:", token);
 
         if (!token) {
-            alert("You are not logged in!");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Not Logged In',
+                text: 'You are not logged in!',
+                confirmButtonText: 'OK'
+            });
             window.location.href = "login.html";
             return;
         }
