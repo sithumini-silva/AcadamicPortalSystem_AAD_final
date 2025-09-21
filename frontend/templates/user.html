@@ -22,16 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html"><i class="fas fa-home me-1"></i> Home</a>
+                    <a class="nav-link" href="../index.html"><i class="fas fa-sign-in-alt me-1"></i> Log Out</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../static/teacherDash.html"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                    <a class="nav-link" href="../static/teacherDash.html"><i class="fas fa-home me-1"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="fas fa-users me-1"></i> User Management</a>
+                    <a class="nav-link active" href="user.html"><i class="fas fa-users me-1"></i> User Management</a>
                 </li>
             </ul>
         </div>
@@ -107,15 +104,12 @@
     </div>
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <span><i class="fas fa-list me-2"></i>User List</span>
-            <button class="btn btn-sm btn-light" onclick="loadAllUsers()">
-                <i class="fas fa-refresh me-1"></i>Refresh
-            </button>
-        </div>
         <div class="card-body p-0">
             <div class="table-container">
                 <table class="table table-hover">
+                    <button class="btn btn-sm btn-light" onclick="loadAllUsers()">
+                        <i class="fas fa-refresh me-1"></i>Refresh
+                    </button>
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -148,6 +142,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/userManage.js"></script>
 </body>
 </html>

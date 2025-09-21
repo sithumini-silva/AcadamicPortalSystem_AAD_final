@@ -30,7 +30,7 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    background: var(--secondary);
     box-shadow: var(--shadow);
     padding: 0.8rem 1rem;
 }
@@ -91,7 +91,7 @@ body {
 }
 
 .card-header {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: var(--accent);
     color: white;
     padding: 1rem 1.5rem;
     font-weight: 600;
@@ -198,7 +198,7 @@ body {
 }
 
 .table thead th {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
     color: white;
     padding: 1rem;
     text-align: left;

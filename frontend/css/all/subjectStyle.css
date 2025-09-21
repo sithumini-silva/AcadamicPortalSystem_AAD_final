@@ -2,7 +2,7 @@
     --primary: #3498db;
     --primary-dark: #2980b9;
     --secondary: #2c3e50;
-    --accent: #e74c3c;
+    --accent: #f15849;
     --light: #f8f9fa;
     --dark: #2c3e50;
     --success: #2ecc71;
@@ -29,7 +29,7 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    background: var(--secondary);
     box-shadow: var(--shadow);
     padding: 0.8rem 1rem;
 }
@@ -62,7 +62,7 @@ body {
     font-weight: 700;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid var(--primary);
+    border-bottom: 3px solid var(--accent);
     display: inline-block;
 }
 
@@ -81,7 +81,7 @@ body {
 }
 
 .card-header {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: var(--accent);
     color: white;
     padding: 1rem 1.5rem;
     font-weight: 600;
@@ -168,7 +168,7 @@ body {
 }
 
 .table thead th {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
     color: white;
     padding: 1rem;
     text-align: left;

@@ -9,15 +9,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --accent-color: #7209b7;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --success-color: #4cc9f0;
-            --warning-color: #f72585;
-            --sidebar-width: 250px;
-            --topbar-height: 70px;
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
@@ -36,7 +39,7 @@
 
         /* Header Styles */
         .header {
-            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
+            background: var(--secondary);
             color: white;
             padding: 15px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -259,6 +262,28 @@
             flex-wrap: wrap;
             margin: 20px 0;
         }
+        .home-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            color: var(--secondary);
+        }
 
         /* Responsive Design */
         @media (max-width: 992px) {
@@ -412,6 +437,10 @@
                 <button type="button" class="btn btn-info" onclick="viewExams()"><i class="fas fa-eye"></i> View Exams</button>
             </div>
         </form>
+
+        <a href="../static/teacherDash.html" class="home-btn">
+            <i class="fas fa-home fa-2x"></i>
+        </a>
 
         <div class="table-container">
             <table class="table table-striped">
@@ -643,5 +672,7 @@
         });
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
