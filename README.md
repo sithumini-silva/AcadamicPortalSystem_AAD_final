@@ -36,13 +36,17 @@ cd academic-portal-system
     🎓 **Student** → `student@example.com / student123`  
 
 5️⃣ Access the Application  
-    🌐 **Frontend** → [http://localhost:5500](http://localhost:5500) *(if using Live Server)*  
+    🌐 **Frontend** → [http://localhost:5500](http://localhost:5500) 
     ⚙️ **Backend API** → [http://localhost:8080](http://localhost:8080)  
 
 
 
 
 📸 Screenshots
+<img width="1892" height="880" alt="Screenshot 2025-09-21 202653" src="https://github.com/user-attachments/assets/ab60fcd4-f9a1-417e-8191-264749dd8105" />
+<img width="1919" height="864" alt="Screenshot 2025-09-21 203138" src="https://github.com/user-attachments/assets/ebfd70b4-13f9-4920-ac28-3b7372394584" />
+
+
 [google Document](https://docs.google.com/document/d/16TRyuGc0SnzEuRYIiN3CyQPXRl6KdTnWBDwQX3N760s/edit?usp=sharing)
 
 🎥 Demo Video  
