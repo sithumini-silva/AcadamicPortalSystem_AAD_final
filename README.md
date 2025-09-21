@@ -7,6 +7,7 @@
 🔐 Role-based Access → Separate dashboards for Students, Teachers, and Admins.
 
 
+
 ⚙️ Setup Instructions  
 
 1️⃣ Clone the Repository  
@@ -39,6 +40,10 @@ cd academic-portal-system
     ⚙️ **Backend API** → [http://localhost:8080](http://localhost:8080)  
 
 
+
+
+📸 Screenshots
+[google Document](https://docs.google.com/document/d/16TRyuGc0SnzEuRYIiN3CyQPXRl6KdTnWBDwQX3N760s/edit?usp=sharing)
 
 🎥 Demo Video  
 👉 [Watch on YouTube](https://youtu.be/TA4hguvR8pY)
